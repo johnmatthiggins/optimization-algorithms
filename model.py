@@ -7,7 +7,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
 
-EPOCHS = 10000
+EPOCHS = 100000
 DEFAULT_LR = 1e-3
 
 '''
@@ -31,6 +31,7 @@ def main():
     fig.add_scatter(x=list(range(EPOCHS)), y=gd_learning_curve, name='Gradient Descent', mode='lines')
     fig.add_scatter(x=list(range(EPOCHS)), y=sgd_learning_curve, name='Stochastic Gradient Descent', mode='lines')
 
+    fig.update_xaxes(type='log')
     fig.update_layout(
         title='Linear Regression Optimization Curves',
         xaxis_title='Iterations',
@@ -64,6 +65,7 @@ def main():
     fig.add_scatter(x=list(range(EPOCHS)), y=gd_learning_curve, name='Gradient Descent', mode='lines')
     fig.add_scatter(x=list(range(EPOCHS)), y=sgd_learning_curve, name='Stochastic Gradient Descent', mode='lines')
 
+    fig.update_xaxes(type='log')
     fig.update_layout(
         title='Logistic Regression Optimization Curves',
         xaxis_title='Iterations',
@@ -216,8 +218,6 @@ class LogisticRegression:
 
     def obj_fn(self, X, y):
         cost = ((self.predict(X) - y).T @ X) / X.shape[0]
-        print(cost)
-
         return cost
 
 
